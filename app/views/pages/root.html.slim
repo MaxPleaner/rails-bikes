@@ -1,17 +1,14 @@
-button toggles='#bikes' name='bikes' bikes
 
-- if current_user
-  button name='new-bike' toggles='#new-bike' new bike
-  br
-  div#new-bike.hidden
-    = render 'bikes/new'
+- content_for(:header2) do
+  div.header2
+    button toggles='#bikes' name='bikes' bikes
+    - if current_user
+      button name='new-bike' toggles='#new-bike' new bike
+      br
 
 div#bikes.hidden
-  ul
-  - Bike.all.each do |bike|
-    li
-      button name=("bike-#{bike.id}") toggles=("#bike-#{bike.id}")
-        = bike.title
-      br
-      div id=("bike-#{bike.id}") class='hidden'
-        = render "bikes/show", bike: bike
+  = render "bikes/index"
+
+div#new-bike.hidden
+  div.page
+    = render 'bikes/new'

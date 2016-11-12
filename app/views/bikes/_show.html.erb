@@ -1,4 +1,9 @@
 <p>
+  
+  <% if bike.try(:photo) %>
+    <%= bike.photo.to_html %>
+  <% end %>
+
   <strong>Title:</strong>
   <%= bike.title %>
 </p>
@@ -21,24 +26,33 @@
 <%= link_to 'Edit', edit_bike_path(bike) %> |
 <td><%= link_to 'Destroy', bike, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-<button toggles='<%= "#bike-#{bike.id}-comments" %>'
-        name='<%= "#bike-#{bike.id}-comments" %>'>
-  comments
-</button>
-<div id="<%= "bike-#{bike.id}-comments" %>" class='hidden'>
-  <% bike.comments.each do |comment| %>
-    <%= render "comments/show", comment: comment %>
-  <% end %>
-</div>
-
-
-
 <br>
+<br>
+
 <button toggles='#new-comment'>
   <b> New comment </b>
 </button>
 
+<br>
+
 <div class='hidden' id="new-comment">
   <%= render "comments/form", bike: bike %>
+</div>
+
+<br>
+
+<button toggles='<%= "#bike-#{bike.id}-comments" %>'
+        name='<%= "#bike-#{bike.id}-comments" %>'>
+  show <%= bike.comments.count %> comments
+</button>
+<br>
+<br>
+
+<div id="<%= "bike-#{bike.id}-comments" %>" class='hidden'>
+  <% bike.comments.each do |comment| %>
+    <div class='comment'>
+      <%= render "comments/show", comment: comment %>
+    </div>
+  <% end %>
 </div>
 

@@ -13,6 +13,7 @@
 //= require jquery
 //= require rails-bikes
 //= require bootstrap-sprockets
+//= require sticky
 //= require_tree .
 
 RailsBikes()

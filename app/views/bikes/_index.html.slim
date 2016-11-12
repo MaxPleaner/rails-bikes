@@ -1,0 +1,14 @@
+- bikes = Bike.all
+
+- content_for(:header3) do
+  div.header3
+    - bikes.each do |bike|
+        button.bike-btn name=("bike-#{bike.id}") toggles=("#bike-#{bike.id}")
+          = bike.title
+        br
+        
+- bikes.each do |bike|
+  div.hidden.bike id=("bike-#{bike.id}")
+    div.page
+      = render "bikes/show", bike: bike
+

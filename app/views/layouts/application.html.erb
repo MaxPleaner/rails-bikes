@@ -8,27 +8,20 @@
 </head>
 <body>
 
-<div class="jumbotron">
-<div id="nav">
-  <% if current_user %>
-    logged in as <%= current_user.username %> |
-  <% end %>
-  <%= link_to "Root", '/' %> |  
-  <% if current_user %>
-    <%= link_to "Edit Profile", edit_user_path(current_user.id) %> |
-    <%= link_to "Logout", :logout, method: :post %>
-  <% else %>
-    <%= link_to "Register", new_user_path %> |
-    <%= link_to "Login", :login %> 
-  <% end %>
+<%= render "pages/javascript_warning" %>
+
+<div id="headers">
+  <%= render "pages/header1" %>
+  <%= content_for :header2 %>
+  <%= content_for :header3 %>
 </div>
-<div>
-    <p id="notice"><%= flash[:notice] %></p>
-    <p id="alert"><%= flash[:alert] %></p>
+
+<div id="notices">
+  <p id="notice"><%= flash[:notice] %></p>
+  <p id="alert"><%= flash[:alert] %></p>
 </div>
 
 <%= yield %>
-</div>
 
 </body>
 </html>
