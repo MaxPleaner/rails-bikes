@@ -1,8 +1,17 @@
-b bikes
-ul
-- Bike.all.each do |bike|
-  li
-    a href="bikes/#{bike.id}" = bike.title
+button toggles='#bikes' name='bikes' bikes
 
 - if current_user
-  a href="bikes/new" new bike
+  button name='new-bike' toggles='#new-bike' new bike
+  br
+  div#new-bike.hidden
+    = render 'bikes/new'
+
+div#bikes.hidden
+  ul
+  - Bike.all.each do |bike|
+    li
+      button name=("bike-#{bike.id}") toggles=("#bike-#{bike.id}")
+        = bike.title
+      br
+      div id=("bike-#{bike.id}") class='hidden'
+        = render "bikes/show", bike: bike

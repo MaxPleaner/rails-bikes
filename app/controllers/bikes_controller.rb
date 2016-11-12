@@ -4,6 +4,7 @@ class BikesController < ApplicationController
   before_action :maintainer_only, only: [:update, :edit, :destroy]
 
   def show
+    @comment = Comment.new
   end
 
   def new
@@ -15,7 +16,9 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(bike_params)
-
+    if current_user
+      @bike.maintainer_id = current_user.id
+    end
     respond_to do |format|
       if @bike.save
         format.html { redirect_to '/', notice: 'Bike was successfully created.' }
@@ -56,7 +59,7 @@ class BikesController < ApplicationController
     def bike_params
       params.require(:bike).permit(
         :title, :price, :description, :status
-      ).merge(maintainer_id: current_user&.id)
+      )
     end
 
     def maintainer_only

@@ -17,8 +17,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
+        login(params[:email], params[:password])
         format.html { 
-          redirect_to '/', notice: 'Welcome, #{@user.username}.'
+          redirect_to '/', notice: "Welcome, #{@user.username}."
         }
         format.json { render :show, status: :created, location: @user }
       else
