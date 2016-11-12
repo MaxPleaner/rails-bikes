@@ -1,0 +1,8 @@
+b bikes
+ul
+- Bike.all.each do |bike|
+  li
+    a href="bikes/#{bike.id}" = bike.title
+
+- if current_user
+  a href="bikes/new" new bike

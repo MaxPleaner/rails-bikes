@@ -1,0 +1,22 @@
+<p>
+  <strong>Title:</strong>
+  <%= @bike.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @bike.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @bike.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @bike.status %>
+</p>
+
+<%= link_to 'Edit', edit_bike_path(@bike) %> |
+<td><%= link_to 'Destroy', @bike, method: :delete, data: { confirm: 'Are you sure?' } %></td>
