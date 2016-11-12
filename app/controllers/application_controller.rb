@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   http_basic_authenticate_with(
-    username: "bike",
-    password: "bike"
+    username: ENV["HTTP_USERNAME"] || "bike",
+    password: ENV["HTTP_PASSWORD"] || "bike"
   )
 
   def redirect_unpermitted
